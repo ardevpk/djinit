@@ -6,24 +6,34 @@ with open("README.md", "r") as fh:
 
 
 setuptools.setup(
-    name='djdeploy',
-    version='0.0.2',
-    description='Django automate deployment',
+    name='djinit',
+    version='0.0.1',
+    description='Django project initialize',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ardevpk/djdeploy",
+    url="https://github.com/ardevpk/djinit",
     project_urls = {
-        "Bug Tracker": "https://github.com/ardevpk/djdeploy/issues",
+        "Bug Tracker": "https://github.com/ardevpk/djinit/issues",
     },
     author="Abdul Rehman",
     author_email="adnan1470369258@gmail.com",
-    py_modules=['djdeploy'],
+    py_modules=['djinit'],
+    include_package_data=True,
+    # include_dirs=['templates',],
+    package_data={
+            'djinit': [
+                'utilities/templates/*.html',
+                'utilities/templates/app/*.html',
+                'utilities/templates/includes/*.html',
+                'utilities/templates/layouts/*.html',
+                'utilities/templates/partials/*.html',
+            ]
+        },
     package_dir={'': 'src'},
     packages = setuptools.find_packages(where="src"),
     python_requires = ">=3.6",
     install_requires=[
-        'paramiko==2.12.0',
-        'PyAutoGUI==0.9.53'
+        'Django>=3.8',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -31,6 +41,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     entry_points={
-        'console_scripts': ['djdeploy=djdeploy.index:main']
+        'console_scripts': ['djinit=djinit.index:main']
     },
 )

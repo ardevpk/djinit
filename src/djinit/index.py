@@ -1,13 +1,15 @@
 import os
 import shutil
-from new_project.utilities import (
+import djinit
+from .utilities import (
     project, settings,
     views, urls,
     autoopen,
 )
 
 
-def new_project():
+def main():
+    modpath = os.path.dirname(djinit.__file__)
     mainPath:str = os.getcwd()
     os.chdir(mainPath)
 
@@ -31,7 +33,7 @@ def new_project():
     appPath = os.path.join(projectName, 'app')
 
     ####### Copying Project Files... ##############
-    curTempPath = os.path.join(mainPath, 'new_project/utilities/templates')
+    curTempPath = os.path.join(modpath, 'utilities/templates')
     projTempPath = os.path.join(projectPath, 'templates')
     shutil.copytree(curTempPath, projTempPath)
     with open(os.path.join(corePath, 'static/css/style.css'), 'w') as f: f.write('')
@@ -62,4 +64,4 @@ def new_project():
 
 
 if __name__ == 'main':
-    new_project()
+    main()
