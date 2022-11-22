@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='djinit',
-    version='0.0.5',
+    version='0.0.6',
     description='Django project initialize',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -34,6 +34,7 @@ setuptools.setup(
     python_requires = ">=3.6",
     install_requires=[
         'Django>=3.8',
+        'virtualenv>=20'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
