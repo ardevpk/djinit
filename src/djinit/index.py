@@ -42,7 +42,7 @@ def createProject(auth=False):
     ####### Copied! ###############################
 
     ####### Modifying settings... ###############
-    settings.wrtingSettingsFile(corePath)
+    settings.wrtingSettingsFile(corePath, auth)
     ####### Ending settings modifications! ########
 
     ####### Modifying views... ##################
