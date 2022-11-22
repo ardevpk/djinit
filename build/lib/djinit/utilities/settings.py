@@ -49,12 +49,11 @@ def wrtingSettingsFile(corePath:str, auth:bool) -> bool:
         settingsread[114:-1] = confSettings
         if auth:
             settingsread[38] = "\n\t# Apps\n\t'app.apps.AppConfig',\n\n\t# Third party apps\n\t'accounts',\n\t'crispy_forms',\n\n"
-            confSettings = confSettings + authconf
-            settingsread[114:-1] = confSettings
+            settingsread[114:-1] = confSettings + authconf
         print("Finalyzing And Writting The settings.py File.")
         with open(os.path.join(corePath, 'settings.py'), 'w') as settingsw:
             settingsw.writelines(settingsread)
         return True
     except Exception as err:
-        print('Settings Error: ', err.__class__.__name__)
+        print('Settings Error: ', err)
         return False
