@@ -1,6 +1,7 @@
 import os
 import shutil
 import djinit
+import sys
 from .utilities import (
     project, settings,
     views, urls,
@@ -8,7 +9,7 @@ from .utilities import (
 )
 
 
-def main():
+def createProject(auth=False):
     modpath = os.path.dirname(djinit.__file__)
     mainPath:str = os.getcwd()
     os.chdir(mainPath)
@@ -26,7 +27,7 @@ def main():
     projectPath = os.path.join(mainPath, projectName)
     envPath = os.path.join(projectPath, 'env/Scripts/activate')
     ####### Starting Project... ###################
-    project.startDjangoProject(envPath, projectName)
+    project.startDjangoProject(envPath, projectName, auth)
     ####### Ending Project! #######################
 
     corePath = os.path.join(projectName, 'core')
@@ -49,7 +50,7 @@ def main():
     ####### Ending views modifications! ###########
 
     ####### Modifying urls... ###################
-    urls.wrtingUrlsFile(corePath, appPath)
+    urls.wrtingUrlsFile(corePath, appPath, auth)
     ####### Ending urls modifications! ############
 
     ####### Writing auto open python file... #####
@@ -61,6 +62,25 @@ def main():
     os.system(f'cd {projectPath} & python browser.py')
     ####### End! ######
     print('Done!')
+
+
+def main():
+    if len(sys.argv) > 1:
+        argv = sys.argv[1]
+        if argv == '--help':
+            helpp = [
+                '\tArgument, Description.',
+                '\t--create, Initialzie Django project with base structure.',
+                '\t--create-auth, Initialzie Django project with base structure, And authentication implemented.']
+            print("\n".join(helpp))
+        if argv == '--create': createProject()
+        elif argv == '--create-auth': createProject(auth=True)
+        else:
+            print('Please pass any valid argument to execute!')
+            exit()
+    else:
+        print('Please pass any argument to execute!')
+        exit()
 
 
 if __name__ == 'main':
