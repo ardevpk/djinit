@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='djinit',
-    version='0.0.6',
+    version='0.0.7',
     description='Django project initialize',
     long_description=long_description,
     long_description_content_type="text/markdown",
